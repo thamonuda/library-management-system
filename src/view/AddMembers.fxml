@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="436.0" prefWidth="560.0">
+         <children>
+            <ImageView fitHeight="434.0" fitWidth="567.0" layoutX="-6.0" layoutY="1.0" opacity="0.45">
+               <image>
+                  <Image url="@pexels-abby-chung-371167-1106468%20(2).jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="198.0" layoutY="14.0" prefHeight="39.0" prefWidth="191.0" text="Add Member" textFill="#eb0303">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtMemberId" layoutX="294.0" layoutY="105.0" prefHeight="39.0" prefWidth="249.0" />
+            <TextField fx:id="txtMemberName" layoutX="294.0" layoutY="173.0" prefHeight="39.0" prefWidth="249.0" />
+            <TextField fx:id="txtMemberAddress" layoutX="294.0" layoutY="306.0" prefHeight="39.0" prefWidth="249.0" />
+            <Separator layoutX="3.0" layoutY="64.0" prefHeight="4.0" prefWidth="552.0" scaleY="2.0" />
+            <Button layoutX="310.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnAddMember" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: #00FA9A;" text="Add Member">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="30.0">
+                     <image>
+                        <Image url="@b7bee749ce0923cd54eadf8d6d4413bd.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label layoutX="45.0" layoutY="105.0" prefHeight="39.0" prefWidth="231.0" text="Member ID              :-">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="173.0" prefHeight="39.0" prefWidth="231.0" text="Member Name        :-">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="241.0" prefHeight="39.0" prefWidth="231.0" text="Member DOB         :-">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="45.0" layoutY="306.0" prefHeight="39.0" prefWidth="231.0" text="Member Address    :-">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="txtMemberDOB" layoutX="294.0" layoutY="241.0" prefHeight="39.0" prefWidth="249.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
