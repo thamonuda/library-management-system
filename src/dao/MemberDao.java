@@ -2,11 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 import db.DBConnection;
 import entity.MemberEntity;
-
 
 public class MemberDao {
 
@@ -19,6 +20,21 @@ public class MemberDao {
         preparedStatement.setDate(3, java.sql.Date.valueOf(memberEntity.getDob()));
         preparedStatement.setString(4, memberEntity.getAddress());
         preparedStatement.executeUpdate();
-        connection.close();
+        // connection.close();
     }
+
+    public String getLastMemberId() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT MAX(Membid) FROM member";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String lastId = "f";
+        if (resultSet.next()) {
+            lastId = resultSet.getString(1);
+        }
+        // connection.close();
+        return lastId;
+    }
+
+   
 }

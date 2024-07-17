@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,22 +13,40 @@ import javafx.stage.Stage;
 
 public class MainController {
      @FXML
-    void btnAddBookOnAction(ActionEvent event) throws IOException{
+    void btnAddBookOnAction(ActionEvent event) throws IOException, ClassNotFoundException, SQLException{
+        System.out.println("Add Book");
+        URL resource = this.getClass().getResource("/view/AddBooks.fxml");
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent node = loader.load();
 
+        
+              // Get the controller instance
+              BookController bookController = loader.getController();
+              bookController.btnId(event); // Call the btnId method
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(node));
+        stage.setTitle("Add Book Form");
+        stage.show();
 
     }
 
     @FXML
-    void btnAddMembersOnAction(ActionEvent event) throws IOException{
+    void btnAddMembersOnAction(ActionEvent event) throws IOException, ClassNotFoundException, SQLException{
         System.out.println("Add Members");
         URL resource = this.getClass().getResource("/view/AddMembers.fxml");
-        Parent node = FXMLLoader.load(resource);
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent node = loader.load();
+        
+        // Get the controller instance
+        MemberController memberController = loader.getController();
+        memberController.btnId(event); // Call the btnId method
+        
         Stage stage = new Stage();
         stage.setScene(new Scene(node));
+        stage.setTitle("Add Member Form");
         stage.show();
-        stage.setTitle("Add Memeber Form");
     }
-
     @FXML
     void btnAllBooksOnAction(ActionEvent event) {
 
