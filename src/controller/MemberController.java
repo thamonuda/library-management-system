@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -35,6 +36,7 @@ public class MemberController {
      @FXML
     private Label lblLastMemberId;
     @FXML
+
     void btnId(ActionEvent event) throws ClassNotFoundException, SQLException {
        // initialize();
         

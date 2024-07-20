@@ -35,7 +35,7 @@ public class BookController implements Initializable {
     void btnId(ActionEvent event) throws ClassNotFoundException, SQLException {
        // initialize();
         
-        String lastId = bookService.getLastMemberId();
+        String lastId = bookService.getLastBookId();
         lblLastBookId.setText("Last Member ID: " + lastId);
         System.out.println("Last Member ID: " + lastId);
     }
@@ -155,7 +155,7 @@ public class BookController implements Initializable {
 
         // Display the last member ID
         try {
-            String lastId = bookService.getLastMemberId();
+            String lastId = bookService.getLastBookId();
             lblLastBookId.setText("Last Member ID: " + lastId);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

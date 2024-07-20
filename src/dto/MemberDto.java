@@ -9,10 +9,6 @@ public class MemberDto {
     private  String address;
 
     
-
-   
-
-    
     public MemberDto(String id, String name, LocalDate dob, String address) {
         this.id = id;
         this.name = name;

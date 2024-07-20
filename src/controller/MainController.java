@@ -58,7 +58,21 @@ public class MainController {
     }
 
     @FXML
-    void btnToBorrowBookOnAction(ActionEvent event) {
+    void btnToBorrowBookOnAction(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
+
+        System.out.println("Add Members");
+        URL resource = this.getClass().getResource("/view/ToBorrow.fxml");
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent node = loader.load();
+        
+        ToBorrowController toBorrowController = loader.getController();
+        toBorrowController.initialize();
+        toBorrowController.btnId(event);
+        
+       Stage stage = new Stage();
+       stage.setScene(new Scene(node));
+        stage.setTitle("To Borrow Book");
+        stage.show();
 
     }
 

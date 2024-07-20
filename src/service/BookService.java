@@ -23,7 +23,7 @@ public class BookService {
         bookDAO.saveBook(bookEntity);
     }
 
-    public String getLastMemberId() throws SQLException, ClassNotFoundException {
+    public String getLastBookId() throws SQLException, ClassNotFoundException {
         return bookDAO.getLastBookId();
     }
 }
