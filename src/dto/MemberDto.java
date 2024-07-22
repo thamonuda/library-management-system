@@ -41,6 +41,8 @@ public class MemberDto {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
     public MemberDto() {
     }
     @Override

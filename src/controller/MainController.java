@@ -66,13 +66,14 @@ public class MainController {
         Parent node = loader.load();
         
         ToBorrowController toBorrowController = loader.getController();
-        toBorrowController.initialize();
-        toBorrowController.btnId(event);
+        
+     //   toBorrowController.btnId(event);
         
        Stage stage = new Stage();
        stage.setScene(new Scene(node));
         stage.setTitle("To Borrow Book");
         stage.show();
+   
 
     }
 

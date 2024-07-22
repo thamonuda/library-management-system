@@ -22,29 +22,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import service.BookService;
-import service.ToBorrowService;
-
 import javafx.util.Duration;
+import service.ToBorrowService;
 
 public class ToBorrowController implements Initializable {
 
-        private IntegerProperty borrowId = new SimpleIntegerProperty();
+    private IntegerProperty borrowId = new SimpleIntegerProperty();
     private StringProperty borrowIdText = new SimpleStringProperty();
 
-    private ToBorrowService toBorrowService;
-    private BookService bookService;
-    private ToBorrowDto toBorrowDto;
-
-    public ToBorrowController() {
-        this.toBorrowService = new ToBorrowService();
-        this.bookService = new BookService();
-        this.toBorrowDto = new ToBorrowDto();
-    }
+    private ToBorrowService toBorrowService = new ToBorrowService();
 
     @FXML
     private Button btnBorrowBook;
@@ -111,6 +100,7 @@ public class ToBorrowController implements Initializable {
 
     @FXML
     private Label lblTime;
+
     @FXML
     private Label iblgetcategory;
 
@@ -121,6 +111,7 @@ public class ToBorrowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize categories
         loadCategoriesFromDatabase();
+
         // Get the current date
         LocalDate currentDate = LocalDate.now();
         // Format the date if needed
@@ -128,6 +119,38 @@ public class ToBorrowController implements Initializable {
         String formattedDate = currentDate.format(formatter);
         // Set the text of the label
         lblIssuedDateShow.setText(formattedDate);
+
+        // Initialize the clock
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            lblTime.setText(LocalTime.now().format(timeFormatter));
+        }), new KeyFrame(Duration.seconds(1)));
+
+        clock.setCycleCount(Timeline.INDEFINITE);
+        clock.play();
+
+        // Bind properties
+        /*
+         * txtBorrowId.textProperty().bindBidirectional(borrowIdText);
+         * 
+         * // Bind the borrowId property to borrowIdText for conversion
+         * borrowIdText.addListener((observable, oldValue, newValue) -> {
+         * try {
+         * borrowId.set(Integer.parseInt(newValue));
+         * } catch (NumberFormatException e) {
+         * borrowId.set(0);
+         * }
+         * });
+         */
+
+        // Display the last borrow ID
+        try {
+            String lastId = toBorrowService.getLastBorrowId();
+            lblLastBorrowId.setText("Last Borrow ID: " + lastId);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -151,20 +174,24 @@ public class ToBorrowController implements Initializable {
         System.out.println(sqlDueDate);
 
         ToBorrowDto toBorrowDto = new ToBorrowDto(borrowId, bookId, memberId, sqlIssuedDate, sqlDueDate, categoryId);
-       try {
-           toBorrowService.saveBorrow(toBorrowDto);
-       } catch (ClassNotFoundException | SQLException e) {
-           e.printStackTrace();
-       }
-      clearForm();
-      btnId(event);
+        try {
+            toBorrowService.saveBorrow(toBorrowDto);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        clearForm();
+        btnId(event);
     }
 
     @FXML
-    void btnSearchId(ActionEvent event) {
+    void btnSearchId(ActionEvent event) throws ClassNotFoundException, SQLException {
+
         try {
+
             String id = txtShowId.getText();
+            System.out.println(id);
             MemberDto member = toBorrowService.getMember(id);
+            System.out.println(id);
 
             if (member != null) {
                 iblShowName.setText(member.getName());
@@ -180,55 +207,33 @@ public class ToBorrowController implements Initializable {
             lblShowId.setText("Wrong details.");
             iblShowName.setText(" ");
             lblShowDOB.setText(" ");
+            System.out.println(e);
         }
 
         txtShowId.setText("");
     }
 
-  
-
     private String[] loadCategoriesFromDatabase() {
         try {
             String[] categories = BookDao.getCategories();
-           // categoryChoiceBox.getItems().addAll(categories);
-           return categories;
+            return categories;
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
-        
-    }
-
-    @FXML
-    public void initialize() {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            lblTime.setText(LocalTime.now().format(timeFormatter));
-        }), new KeyFrame(Duration.seconds(1)));
-
-        clock.setCycleCount(Timeline.INDEFINITE);
-        clock.play();
     }
 
     @FXML
     void btnSearchBookId(ActionEvent event) {
 
- 
         try {
             String id = txtBookId.getText();
             BookDto book = toBorrowService.getBook(id);
-           // System.out.println(book.getCategId());
-
-  
-          //  System.out.println(returnCategoryName( ida));
-          //  iblgetcategory.setText(book.getCategId());
 
             if (book != null) {
                 lblShowBookName.setText(book.getName());
                 lblCId.setText(book.getCategId());
-             iblgetcategory.setText(returnCategoryName( book.getCategId()));
-
+                iblgetcategory.setText(returnCategoryName(book.getCategId()));
             } else {
                 lblShowBookName.setText("No Book");
                 iblgetcategory.setText("");
@@ -236,74 +241,37 @@ public class ToBorrowController implements Initializable {
         } catch (Exception e) {
             lblShowBookName.setText("Wrong details.");
             System.out.println(e);
-
         }
-
     }
 
-    // public String getBookName(String bookId){
-
-    // }
-
-    public void clearForm(){
+    public void clearForm() {
         txtBorrowId.setText("");
         txtBookId.setText("");
         lblMemberIdShow.setText("Search Member ID");
         lblShowBookName.setText("Search Book ID");
-       // lblIssuedDateShow.setText("");
         txtDueDate.setValue(null);
-        lblShowId.setText("");
-        iblShowName.setText("Search Book ID");
+        lblShowId.setText("Search Book ID");
+        iblShowName.setText("");
         lblShowDOB.setText("");
         iblgetcategory.setText("Search Book ID");
         lblCId.setText("");
-
-
     }
 
-    public String returnCategoryName(String id) throws ClassNotFoundException, SQLException{
+    public String returnCategoryName(String id) throws ClassNotFoundException, SQLException {
 
-        String[] categoriesId = null;
-        
-             categoriesId = BookDao.getCategoriesId();
-       
-       String[] categories =  loadCategoriesFromDatabase();
+        String[] categoriesId = BookDao.getCategoriesId();
+        String[] categories = loadCategoriesFromDatabase();
 
-       for(int i=0;i<categories.length;i++){
-            if(categoriesId[i].equals(id)){
+        for (int i = 0; i < categories.length; i++) {
+            if (categoriesId[i].equals(id)) {
                 return categories[i];
             }
-       }
-       return null;
-
-    }
-    void btnId(ActionEvent event) throws ClassNotFoundException, SQLException {
-        // initialize();
-         
-         String lastId = toBorrowService.getLastBorrowId();
-         lblLastBorrowId.setText("Last Borrow ID: " + lastId);
-         
-     }
-
-     void initializeID() {
-        
-        txtBorrowId.textProperty().bindBidirectional(borrowIdText);
-
-        // Bind the memberId property to memberIdText for conversion
-        borrowIdText.addListener((observable, oldValue, newValue) -> {
-            try {
-                borrowId.set(Integer.parseInt(newValue));
-            } catch (NumberFormatException e) {
-                borrowId.set(0);
-            }
-        });
-
-        // Display the last member ID
-        try {
-            String lastId = toBorrowService.getLastBorrowId();
-            lblLastBorrowId.setText("Last Member ID : " + lastId);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
+        return null;
+    }
+
+    void btnId(ActionEvent event) throws ClassNotFoundException, SQLException {
+        String lastId = toBorrowService.getLastBorrowId();
+        lblLastBorrowId.setText("Last Borrow ID: " + lastId);
     }
 }

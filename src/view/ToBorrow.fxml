@@ -89,7 +89,7 @@
                </font>
             </Label>
             <Separator layoutX="217.0" layoutY="63.0" orientation="VERTICAL" prefHeight="461.0" prefWidth="3.0" />
-            <ImageView fitHeight="41.0" fitWidth="48.0" layoutX="82.0" layoutY="101.0">
+            <ImageView fitHeight="41.0" fitWidth="48.0" layoutX="83.0" layoutY="81.0">
                <image>
                   <Image url="@borrowmember.png" />
                </image>
@@ -204,6 +204,11 @@
                </font>
             </Label>
             <Label fx:id="lblCId" layoutX="693.0" layoutY="298.0" prefHeight="23.0" prefWidth="67.0" />
+            <Label layoutX="77.0" layoutY="127.0" prefHeight="21.0" prefWidth="59.0" text="Member" textFill="#eb0707">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

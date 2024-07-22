@@ -3,7 +3,7 @@ package dao;
 import db.DBConnection;
 import dto.BookDto;
 import dto.MemberDto;
-import dto.ToBorrowDto;
+
 import entity.ToBorrowEntity;
 
 import java.sql.Connection;
@@ -16,11 +16,13 @@ import java.time.LocalDate;
 public class ToBorrowDao {
 
     public MemberDto getMember(String membID) throws SQLException, ClassNotFoundException {
+        System.out.println("Member at DAO : "+membID);
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM member WHERE MembID = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, membID);
         ResultSet resultSet = preparedStatement.executeQuery();
+        System.out.println(resultSet);
 
         if (resultSet.next()) {
 
@@ -50,25 +52,25 @@ public class ToBorrowDao {
         // connection.close();
     }
 
-    public BookDto getBook(String bookId) throws ClassNotFoundException, SQLException{
+    public BookDto getBook(String bookId) throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM book WHERE BookID = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, bookId);
         ResultSet resultSet = preparedStatement.executeQuery();
-     
-               BookDto book = null;
-               if (resultSet.next()) {
-                String id = resultSet.getString("BookID");
-                String name = resultSet.getString("BookName");
-                String categId = resultSet.getString("CategID");
-                int bookcount = resultSet.getInt("BookCount");
-                String author = resultSet.getString("Author");
-                book = new BookDto(id, name, categId, bookcount, author);
-            }
 
-        //resultSet.close();
-      //  preparedStatement.close();
+        BookDto book = null;
+        if (resultSet.next()) {
+            String id = resultSet.getString("BookID");
+            String name = resultSet.getString("BookName");
+            String categId = resultSet.getString("CategID");
+            int bookcount = resultSet.getInt("BookCount");
+            String author = resultSet.getString("Author");
+            book = new BookDto(id, name, categId, bookcount, author);
+        }
+
+        // resultSet.close();
+        // preparedStatement.close();
         return book;
 
     }
@@ -81,8 +83,9 @@ public class ToBorrowDao {
         String lastId = "f";
         if (resultSet.next()) {
             lastId = resultSet.getString(1);
+            return lastId;
         }
         // connection.close();
-        return lastId;
+        return null;
     }
 }
