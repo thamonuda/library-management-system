@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FinesController">
+   <children>
+      <ImageView fitHeight="297.0" fitWidth="456.0" opacity="0.48">
+         <image>
+            <Image url="@../../../pic/istockphoto-1452651661-612x612.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="297.0" prefWidth="456.0">
+         <children>
+            <Label layoutX="153.0" layoutY="14.0" prefHeight="38.0" prefWidth="150.0" text="Apply Fines" textFill="#fa0000">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLateDays" layoutX="219.0" layoutY="78.0" prefHeight="35.0" prefWidth="118.0" text="20" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl" layoutX="27.0" layoutY="78.0" prefHeight="27.0" prefWidth="182.0" text="Late Days               :-">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="123.0" prefHeight="27.0" prefWidth="182.0" text=" Fines for One Day  :-">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtOneDay" layoutX="233.0" layoutY="119.0" prefHeight="35.0" prefWidth="57.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <Button layoutX="303.0" layoutY="192.0" mnemonicParsing="false" onAction="#btnCallculate" prefHeight="35.0" prefWidth="118.0" text="Callculate" textFill="#2f00ff">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <Lighting diffuseConstant="1.09" specularExponent="26.44" surfaceScale="1.84">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="lblShowTime" layoutX="68.0" layoutY="186.0" prefHeight="35.0" prefWidth="110.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Separator layoutX="11.0" layoutY="59.0" prefHeight="3.0" prefWidth="443.0" />
+            <Label fx:id="lblShowFines" layoutX="139.0" layoutY="248.0" prefHeight="27.0" prefWidth="191.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="206.0" layoutY="119.0" prefHeight="35.0" prefWidth="27.0" text="Rs.">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

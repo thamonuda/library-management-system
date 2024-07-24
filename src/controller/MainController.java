@@ -53,7 +53,7 @@ public class MainController {
     }
 
     @FXML
-    void btnAllMembersOnAction(ActionEvent event) {
+    void btnAllMembersOnAction(ActionEvent event) throws IOException {
 
     }
 
@@ -78,7 +78,15 @@ public class MainController {
     }
 
     @FXML
-    void btnToReturnBookOnAction(ActionEvent event) {
+    void btnToReturnBookOnAction(ActionEvent event) throws IOException {
+        System.out.println("Return");
+        URL resource = this.getClass().getResource("/view/ToReturn.fxml");
+        FXMLLoader loader = new FXMLLoader(resource);
+        Parent node = loader.load();
 
+        Stage stage = new Stage();
+        stage.setScene(new Scene(node));
+         stage.setTitle("To Return Book");
+         stage.show();
     }
 }

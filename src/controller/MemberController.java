@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -11,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,40 +33,43 @@ public class MemberController {
     @FXML
     private TextField txtMemberName;
 
-     @FXML
+    @FXML
     private Label lblLastMemberId;
+
     @FXML
 
     void btnId(ActionEvent event) throws ClassNotFoundException, SQLException {
-       // initialize();
-        
+        // initialize();
+
         String lastId = memberService.getLastMemberId();
         lblLastMemberId.setText("Last Member ID: " + lastId);
         System.out.println("Last Member ID: " + lastId);
     }
 
-   /*  @FXML
-    void initialize() {
-        // Bind the TextField to the memberIdText property
-        txtMemberId.textProperty().bindBidirectional(memberIdText);
-
-        // Bind the memberId property to memberIdText for conversion
-        memberIdText.addListener((observable, oldValue, newValue) -> {
-            try {
-                memberId.set(Integer.parseInt(newValue));
-            } catch (NumberFormatException e) {
-                memberId.set(0);
-            }
-        });
-
-        // Display the last member ID
-        try {
-            String lastId = memberService.getLastMemberId();
-            lblLastMemberId.setText("Last Member ID: " + lastId);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
+    /*
+     * @FXML
+     * void initialize() {
+     * // Bind the TextField to the memberIdText property
+     * txtMemberId.textProperty().bindBidirectional(memberIdText);
+     * 
+     * // Bind the memberId property to memberIdText for conversion
+     * memberIdText.addListener((observable, oldValue, newValue) -> {
+     * try {
+     * memberId.set(Integer.parseInt(newValue));
+     * } catch (NumberFormatException e) {
+     * memberId.set(0);
+     * }
+     * });
+     * 
+     * // Display the last member ID
+     * try {
+     * String lastId = memberService.getLastMemberId();
+     * lblLastMemberId.setText("Last Member ID: " + lastId);
+     * } catch (SQLException | ClassNotFoundException e) {
+     * e.printStackTrace();
+     * }
+     * }
+     */
 
     @FXML
     void btnAddMember(ActionEvent event) throws ClassNotFoundException, SQLException {
@@ -75,23 +78,42 @@ public class MemberController {
         String name = txtMemberName.getText();
         LocalDate dob = txtMemberDOB.getValue();
         String address = txtMemberAddress.getText();
-        
+
         System.out.println("ID : " + id);
         System.out.println("Name : " + name);
         System.out.println("DOB : " + dob);
         System.out.println("Address : " + address);
-       // String lastId = memberService.getLastMemberId();
-      //  lblLastMemberId.setText("Last Member ID: " + lastId);
-      //  System.out.println("Last Member ID: " + lastId);
+        // String lastId = memberService.getLastMemberId();
+        // lblLastMemberId.setText("Last Member ID: " + lastId);
+        // System.out.println("Last Member ID: " + lastId);
 
         MemberDto memberDto = new MemberDto(id, name, dob, address);
+        try {
+            memberService.addMember(memberDto);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Member Save Success.");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load
+                                                                                                                      // the
+                                                                                                                      // CSS
+                                                                                                                      // file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "" + e);
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load
+                                                                                                                      // the
+                                                                                                                      // CSS
+                                                                                                                      // file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
+        }
         memberService.addMember(memberDto);
         clearForm();
-      // Update the last member ID
-      btnId(event);
+        // Update the last member ID
+        btnId(event);
 
     }
-    public void clearForm(){
+
+    public void clearForm() {
         txtMemberId.setText("");
         txtMemberName.setText("");
         txtMemberDOB.setValue(null);

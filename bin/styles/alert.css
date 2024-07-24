@@ -1,0 +1,15 @@
+.custom-alert {
+    -fx-background-color: #6de9ab; /* Background color */
+    -fx-font-size: 15px;          /* Font size */
+    -fx-font-family: "Bookman";  /* Bookman */
+    -fx-text-fill: #ff0000;          /* Text color */
+}
+
+.custom-alert .button-bar {
+    -fx-background-color: #ccc;   /* Button bar background color */
+}
+
+.custom-alert .button {
+    -fx-background-color: #007bff; /* Button background color */
+    -fx-text-fill: white;          /* Button text color */
+}

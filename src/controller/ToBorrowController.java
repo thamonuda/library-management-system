@@ -21,6 +21,7 @@ import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -176,8 +177,16 @@ public class ToBorrowController implements Initializable {
         ToBorrowDto toBorrowDto = new ToBorrowDto(borrowId, bookId, memberId, sqlIssuedDate, sqlDueDate, categoryId);
         try {
             toBorrowService.saveBorrow(toBorrowDto);
+                                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Book Save Success");
+           alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+           alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+           alert.show();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ""+e);
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
         }
         clearForm();
         btnId(event);
@@ -199,11 +208,19 @@ public class ToBorrowController implements Initializable {
                 lblShowDOB.setText(member.getDob().toString());
                 lblMemberIdShow.setText(member.getId());
             } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "No Member This ID.Search Again");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+                alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+                alert.show();
                 lblShowId.setText("Not found!");
                 iblShowName.setText(" ");
                 lblShowDOB.setText(" ");
             }
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ""+e);
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
             lblShowId.setText("Wrong details.");
             iblShowName.setText(" ");
             lblShowDOB.setText(" ");
@@ -235,10 +252,18 @@ public class ToBorrowController implements Initializable {
                 lblCId.setText(book.getCategId());
                 iblgetcategory.setText(returnCategoryName(book.getCategId()));
             } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "No Book.Search Again");
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+                alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+                alert.show();
                 lblShowBookName.setText("No Book");
                 iblgetcategory.setText("");
             }
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ""+e);
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
             lblShowBookName.setText("Wrong details.");
             System.out.println(e);
         }

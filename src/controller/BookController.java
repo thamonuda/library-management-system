@@ -14,7 +14,7 @@ import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -84,8 +84,16 @@ public class BookController implements Initializable {
         BookDto bookDto = new BookDto(id,name,categoryId,bookcount,author);
         try {
             bookService.addBook(bookDto);
+                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Book Save Success.");
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, ""+e);
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS file
+            alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
+            alert.show();
         }
         clearForm();
         btnId(event);
