@@ -36,8 +36,8 @@ public class BookController implements Initializable {
        // initialize();
         
         String lastId = bookService.getLastBookId();
-        lblLastBookId.setText("Last Member ID: " + lastId);
-        System.out.println("Last Member ID: " + lastId);
+        lblLastBookId.setText("Last Book ID: " + lastId);
+        System.out.println("Last Book ID: " + lastId);
     }
 
     @FXML
@@ -164,7 +164,7 @@ public class BookController implements Initializable {
         // Display the last member ID
         try {
             String lastId = bookService.getLastBookId();
-            lblLastBookId.setText("Last Member ID: " + lastId);
+            lblLastBookId.setText("Last Book ID: " + lastId);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

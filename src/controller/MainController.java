@@ -48,8 +48,16 @@ public class MainController {
         stage.show();
     }
     @FXML
-    void btnAllBooksOnAction(ActionEvent event) {
-
+    void btnAllBooksOnAction(ActionEvent event) throws IOException {
+        
+        System.out.println("All Book");
+        URL resources = this.getClass().getResource("/view/AllBook.fxml");
+        FXMLLoader loaders = new FXMLLoader(resources);
+        Parent node = loaders.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(node));
+        stage.setTitle("All Book");
+        stage.show();
     }
 
     @FXML

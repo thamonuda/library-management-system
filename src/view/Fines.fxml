@@ -19,7 +19,7 @@
    <children>
       <ImageView fitHeight="297.0" fitWidth="456.0" opacity="0.48">
          <image>
-            <Image url="@../../../pic/istockphoto-1452651661-612x612.jpg" />
+            <Image url="@istockphoto-1452651661-612x612.jpg" />
          </image>
       </ImageView>
       <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="297.0" prefWidth="456.0">
