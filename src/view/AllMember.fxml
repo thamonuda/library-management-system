@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AllMemberController">
+   <children>
+      <Pane layoutX="-2.0" prefHeight="455.0" prefWidth="675.0">
+         <children>
+            <ImageView fitHeight="462.0" fitWidth="675.0" layoutX="-1.0" layoutY="-3.0" opacity="0.87">
+               <image>
+                  <Image url="@360_F_715199083_mXH6jGtQNu0y2sFq8PrVOyUXagQSxFG2.jpg" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tblAllMember" layoutX="18.0" layoutY="82.0" opacity="0.89" prefHeight="348.0" prefWidth="638.0">
+               <columns>
+                  <TableColumn fx:id="colMemberId" prefWidth="79.0" text="Member ID" />
+                  <TableColumn fx:id="colMemberName" prefWidth="180.0" text="Member Name" />
+                  <TableColumn fx:id="colDOB" prefWidth="107.0" text="DOB" />
+                  <TableColumn fx:id="colMemberAddress" prefWidth="187.0" text="Member Address" />
+                  <TableColumn fx:id="colDelete" minWidth="0.0" prefWidth="84.0" text="Delete" />
+               </columns>
+            </TableView>
+            <Label layoutX="241.0" layoutY="14.0" text="All Members" textFill="RED">
+               <font>
+                  <Font name="Segoe UI Black Italic" size="31.0" />
+               </font>
+            </Label>
+            <Separator layoutX="14.0" layoutY="63.0" prefHeight="3.0" prefWidth="646.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,12 +1,18 @@
 package controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
 import dto.BookDto;
+import dto.MemberDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,74 +20,72 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.AllBookService;
+import service.AllMemberService;
 import tm.AllBookTm;
+import tm.AllMemberTm;
 
-public class AllBookController {
+public class AllMemberController {
 
-    private AllBookService allBookService = new AllBookService();
-
-    @FXML
-    private TableColumn<AllBookTm, String> colBookId;
+    private AllMemberService allMemberService = new AllMemberService();
 
     @FXML
-    private TableColumn<AllBookTm, String> colBookName;
+    private TableColumn<AllMemberTm, String> colMemberId;
 
     @FXML
-    private TableColumn<AllBookTm, String> colCategId;
+    private TableColumn<AllMemberTm, String> colMemberName;
 
     @FXML
-    private TableColumn<AllBookTm, Integer> colBookCount;
+    private TableColumn<AllMemberTm, Date> colDOB;
 
     @FXML
-    private TableColumn<AllBookTm, String> colAuthor;
+    private TableColumn<AllMemberTm, String> colMemberAddress;
 
     @FXML
-    private TableColumn<AllBookTm, Button> colDelete;
+    private TableColumn<AllMemberTm, Button> colDelete;
 
     @FXML
-    private TableView<AllBookTm> tblAllBook;
+    private TableView<AllMemberTm> tblAllMember;
 
     public void initialize() {
-        System.out.println("Initializing table");
-
-        colBookId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colBookName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCategId.setCellValueFactory(new PropertyValueFactory<>("categId"));
-        colBookCount.setCellValueFactory(new PropertyValueFactory<>("bookcount"));
-        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colMemberId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
+        colMemberName.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        colDOB.setCellValueFactory(new PropertyValueFactory<>("DOB"));
+        colMemberAddress.setCellValueFactory(new PropertyValueFactory<>("memberAddress"));
         colDelete.setCellValueFactory(new PropertyValueFactory<>("btnDelete"));
 
         try {
-            loadAllBooks();
+            loadAllMembers();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadAllBooks() throws ClassNotFoundException, SQLException {
-        List<BookDto> books = allBookService.getAllBooks();
-        ObservableList<AllBookTm> bookTmList = FXCollections.observableArrayList();
+    private void loadAllMembers() throws ClassNotFoundException, SQLException {
+        List<MemberDto> members = allMemberService.getAllMembers(); // Assuming this method exists in AllBookService
+        ObservableList<AllMemberTm> memberTmList = FXCollections.observableArrayList();
 
-        for (BookDto book : books) {
+        for (MemberDto member : members) {
             Button button = new Button("Delete");
             button.getStyleClass().add("delete-button");
             button.setOnAction(event -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete "+ book.getName()  +" book?");
+                // Show confirmation dialog
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete "+ member.getName()  +" member?");
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
+                            // Delete logic here
 
-                            allBookService.deleteBook(book.getId());
-
-                            Alert alerts = new Alert(Alert.AlertType.CONFIRMATION, "Book Deleted Success.");
+                            allMemberService.deleteMember(member.getId());
+                            System.out.println(member.getId());
+                            Alert alerts = new Alert(Alert.AlertType.CONFIRMATION, "Member Deleted Success.");
                             alerts.getDialogPane().getStylesheets()
                                     .add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load the CSS
                                                                                                         // file
                             alerts.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
                             alerts.show();
 
-                            System.out.println("delete" + book.getId());
-                            loadAllBooks();
+                            System.out.println("delete" + member.getId());
+                            loadAllMembers(); // Refresh the table
                         } catch (ClassNotFoundException | SQLException e) {
                             e.printStackTrace();
                             Alert alerts = new Alert(Alert.AlertType.CONFIRMATION, "" + e);
@@ -93,19 +97,18 @@ public class AllBookController {
                         }
                     }
                 });
-
             });
 
-            AllBookTm bookTm = new AllBookTm(
-                    book.getId(),
-                    book.getName(),
-                    book.getCategId(),
-                    book.getBookcount(),
-                    book.getAuthor(),
+            AllMemberTm memberTm = new AllMemberTm(
+                    member.getId(),
+                    member.getName(),
+                    member.getDob(),
+                    member.getAddress(),
                     button);
 
-            bookTmList.add(bookTm);
+            memberTmList.add(memberTm);
         }
-        tblAllBook.setItems(bookTmList);
+        tblAllMember.setItems(memberTmList);
+
     }
 }

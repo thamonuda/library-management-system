@@ -14,12 +14,12 @@
    <children>
       <ImageView fitHeight="461.0" fitWidth="695.0">
          <image>
-            <Image url="@../../../pic/Books-1_4-scaled.jpg" />
+            <Image url="@Books-1_4-scaled.jpg" />
          </image>
       </ImageView>
       <Pane prefHeight="461.0" prefWidth="695.0">
          <children>
-            <TableView fx:id="tblAllBook" layoutX="19.0" layoutY="75.0" opacity="0.72" prefHeight="367.0" prefWidth="652.0">
+            <TableView fx:id="tblAllBook" layoutX="19.0" layoutY="75.0" opacity="0.8" prefHeight="367.0" prefWidth="652.0">
               <columns>
                 <TableColumn fx:id="colBookId" prefWidth="90.0" text="Book ID" />
                 <TableColumn fx:id="colBookName" prefWidth="141.0" text="Book Name" />

@@ -16,12 +16,12 @@
    <children>
       <Pane layoutX="-3.0" prefHeight="451.0" prefWidth="772.0">
          <children>
-            <ImageView cache="true" depthTest="ENABLE" fitHeight="457.0" fitWidth="766.0" layoutX="3.0" layoutY="-4.0" opacity="0.48">
+            <ImageView cache="true" depthTest="ENABLE" fitHeight="457.0" fitWidth="766.0" layoutX="3.0" layoutY="-4.0" opacity="0.68">
                <image>
-                  <Image url="@../../../pic/istockphoto-173562091-612x612.jpg" />
+                  <Image url="@728px-What-book-should-i-read-quiz-image.png" />
                </image>
             </ImageView>
-            <Button layoutX="38.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnAllBooksOnAction" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #ADFF2F;" text="                All Books">
+            <Button layoutX="38.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnAllBooksOnAction" opacity="0.91" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #ADFF2F;" text="                All Books">
                <font>
                   <Font size="17.0" />
                </font>
@@ -31,14 +31,14 @@
                <effect>
                   <InnerShadow choke="0.27" radius="7.8025" width="12.21" />
                </effect></Button>
-            <Button layoutX="263.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnAllMembersOnAction" prefHeight="39.0" prefWidth="170.0" style="-fx-background-color: #ADFF2F;" text="All Members" textFill="#000000e8">
+            <Button layoutX="287.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnAllMembersOnAction" opacity="0.91" prefHeight="39.0" prefWidth="170.0" style="-fx-background-color: #ADFF2F;" text="All Members" textFill="#000000e8">
                <font>
                   <Font size="17.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="49.0">
                      <image>
-                        <Image url="@../../../pic/ad1dc39ee6ccead8fb825f6d35fc7c7f.png" />
+                        <Image url="@main%20m.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -109,14 +109,32 @@
             <Separator layoutX="11.0" layoutY="382.0" prefHeight="0.0" prefWidth="751.0" />
             <ImageView fitHeight="39.0" fitWidth="78.0" layoutX="39.0" layoutY="16.0">
                <image>
-                  <Image url="@../../../pic/098f563424cb32a1e9f1a9e9505110cb.png" />
+                  <Image url="@main%20b.png" />
                </image>
             </ImageView>
-            <Label layoutX="20.0" layoutY="398.0" prefHeight="33.0" prefWidth="461.0" text="LIBRARY MANAGEMENT SYSTEM - THAMO" textFill="RED">
+            <Label layoutX="20.0" layoutY="398.0" prefHeight="33.0" prefWidth="484.0" text="LIBRARY MANAGEMENT SYSTEM - THAMO">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="Segoe UI Black Italic" size="22.0" />
                </font>
             </Label>
+            <Button layoutX="556.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnAllCategorieOnAction" opacity="0.91" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #ADFF2F;" text="All Categorie" textFill="#000000e8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="37.0">
+                     <image>
+                        <Image url="@pngwing.com%20(5).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <InnerShadow choke="0.15" />
+               </effect>
+            </Button>
          </children>
       </Pane>
    </children>

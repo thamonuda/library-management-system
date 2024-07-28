@@ -55,14 +55,25 @@ public class MainController {
         FXMLLoader loaders = new FXMLLoader(resources);
         Parent node = loaders.load();
         Stage stage = new Stage();
-        stage.setScene(new Scene(node));
+        Scene scene = new Scene(node);
+        scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        stage.setScene(scene);
         stage.setTitle("All Book");
         stage.show();
     }
 
     @FXML
     void btnAllMembersOnAction(ActionEvent event) throws IOException {
-
+        System.out.println("All Member");
+        URL resources = this.getClass().getResource("/view/AllMember.fxml");
+        FXMLLoader loaders = new FXMLLoader(resources);
+        Parent node = loaders.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(node);
+        scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("All Members");
+        stage.show();
     }
 
     @FXML
@@ -97,4 +108,20 @@ public class MainController {
          stage.setTitle("To Return Book");
          stage.show();
     }
+    @FXML
+    void btnAllCategorieOnAction(ActionEvent event) throws IOException {
+
+         
+         System.out.println("Categorie");
+         URL resource = this.getClass().getResource("/view/Categorie.fxml");
+         FXMLLoader loaders = new FXMLLoader(resource);
+         Parent node = loaders.load();
+         Stage stage = new Stage();
+         Scene scene = new Scene(node);
+         scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+         stage.setScene(scene);
+         stage.setTitle("All Caegorie");
+         stage.show();
+    }
+
 }

@@ -1,0 +1,10 @@
+/* styles.css */
+
+.delete-button {
+    -fx-background-color: #e76b4c; /* Red background color */
+    -fx-text-fill: #ffffff;       /* White text color */
+}
+
+.delete-button:hover {
+    -fx-background-color: #ff0000; /* Darker red when hovered */
+}
