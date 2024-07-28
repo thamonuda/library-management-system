@@ -14,10 +14,7 @@ import dto.MemberDto;
 import dto.ToBorrowDto;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,8 +28,8 @@ import service.ToBorrowService;
 
 public class ToBorrowController implements Initializable {
 
-    private IntegerProperty borrowId = new SimpleIntegerProperty();
-    private StringProperty borrowIdText = new SimpleStringProperty();
+  //  private IntegerProperty borrowId = new SimpleIntegerProperty();
+   // private StringProperty borrowIdText = new SimpleStringProperty();
 
     private ToBorrowService toBorrowService = new ToBorrowService();
 

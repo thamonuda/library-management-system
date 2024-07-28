@@ -6,7 +6,7 @@ public class FinesDto {
     public FinesDto() {
     }
 
-    public FinesDto(Integer lateDays) {
+     public FinesDto(Integer lateDays) {
         this.lateDays = lateDays;
     }
 
@@ -14,7 +14,7 @@ public class FinesDto {
         return lateDays;
     }
 
-    public void setLateDays(Integer lateDays) {
+     public void setLateDays(Integer lateDays) {
         this.lateDays = lateDays;
     }
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DBConnection;
-import dto.BookDto;
+
 import dto.CategorieDto;
 import entity.CategorieEntity;
 

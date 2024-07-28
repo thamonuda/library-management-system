@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import dto.BookDto;
+
 import dto.FinesDto;
 import dto.ToReturnDto;
 import javafx.event.ActionEvent;

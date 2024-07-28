@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBConnection;
-import dto.BookDto;
+
 import dto.ToReturnDto;
-import entity.ToBorrowEntity;
+
 import entity.ToReturnEntity;
 
 public class ToReturnDao {
