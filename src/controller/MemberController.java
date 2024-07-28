@@ -72,7 +72,7 @@ public class MemberController {
      */
 
     @FXML
-    void btnAddMember(ActionEvent event) throws ClassNotFoundException, SQLException {
+    void btnAddMember(ActionEvent event) throws ClassNotFoundException, SQLException  {
         System.out.println("Button pressed: Save");
         String id = txtMemberId.getText();
         String name = txtMemberName.getText();
@@ -97,6 +97,8 @@ public class MemberController {
                                                                                                                       // file
             alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
             alert.show();
+            
+            btnId(event);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "" + e);
             alert.getDialogPane().getStylesheets().add(getClass().getResource("/styles/alert.css").toExternalForm()); // Load
@@ -106,10 +108,10 @@ public class MemberController {
             alert.getDialogPane().getStyleClass().add("custom-alert"); // Apply the custom CSS class
             alert.show();
         }
-        memberService.addMember(memberDto);
+       
         clearForm();
         // Update the last member ID
-        btnId(event);
+       
 
     }
 
